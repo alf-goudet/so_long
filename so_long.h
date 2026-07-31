@@ -14,7 +14,8 @@
 # define SO_LONG_H
 
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
+# include "libft/ft_printf.h"
 # include "mlx_linux/mlx.h"
+# include "mlx_linux/mlx_int.h"
 
 #endif
