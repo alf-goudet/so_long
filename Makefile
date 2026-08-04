@@ -6,11 +6,11 @@ LIBFT_PATH = libft
 LIB = libsolong.a
 LIBFT = $(LIBFT_PATH)/libft.a
  
-SRCS = test.c
+SRCS = test.c errors.c validate_file_name.c 2d_map_array.c so_long_utils.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 # Required dependency linkings
 LINK_SL = -L. -lsolong
