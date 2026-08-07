@@ -6,7 +6,10 @@ LIBFT_PATH = libft
 LIB = libsolong.a
 LIBFT = $(LIBFT_PATH)/libft.a
  
-SRCS = test.c errors.c validate_file_name.c 2d_map_array.c so_long_utils.c
+SRCS = test.c errors.c validate_file_name.c 2d_map_array.c validate_map.c \
+	   so_long_utils.c so_long_utils2.c \
+	   
+
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
@@ -18,8 +21,6 @@ LINK_FT = -Llibft -lft
 LINK_MLX = -Lmlx_linux -lmlx
 LINK_STD = -lX11 -lXext -lbsd -lm
 LINKS = $(LINK_SL) $(LINK_MLX) $(LINK_STD) $(LINK_FT)
-
-LIBS = $(LIB) 
 
 all: sub-mods $(NAME)
 

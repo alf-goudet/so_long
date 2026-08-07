@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 20:00:49 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/04 21:56:31 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/05 21:56:24 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**prep_map_array(int fd, size_t num_lines)
 		{
 			perror("get_next_line");
 			free_map_array(map_array, i);
-			close(fd);
+			close_and_handle_error(fd);
 			exit(EXIT_FAILURE);
 		}
 		i++;
