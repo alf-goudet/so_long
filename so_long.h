@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:16:20 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/07 20:40:56 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/22 22:35:29 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "libft/libft.h"
 # include "libft/ft_printf.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
+# include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
 # include <stdio.h>				// for perror()
 # include <fcntl.h>				// for open()
 # include <unistd.h>			// for close(), read(), write()
@@ -24,6 +24,14 @@
 # include <string.h>			// for strerror()
 # include <stdbool.h>			// for boolean true/false values
 # include <errno.h>				// to use errno variable
+
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	char	*map_desc;
+	size_t	line_count;
+}			t_data;
 
 void	validate_file_name(char *file_name);
 int		open_map_file(char *map_file_name);
