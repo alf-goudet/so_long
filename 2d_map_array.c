@@ -6,36 +6,36 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 20:00:49 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/05 21:56:24 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/25 15:03:18 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**prep_map_array(int fd, size_t num_lines)
+void	prep_map_array(t_data *data)
 {
-	char	**map_array;
 	size_t	i;
 
-	map_array = (char **)malloc((num_lines + 1) * sizeof(char *));
-	if (map_array == NULL)
+	data->map_desc = (char **)malloc((data->num_rows + 1) * sizeof(char *));
+	if (data->map_desc == NULL)
 	{
 		perror("malloc");
+		close_and_handle_error(data);
+		free_map_array(data->map_desc, data->num_rows);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
-	while (i < num_lines)
+	while (i < data->num_rows)
 	{
-		map_array[i] = get_next_line(fd);
-		if (map_array[i] == NULL)
+		data->map_desc[i] = get_next_line(data->fd);
+		if (data->map_desc[i] == NULL)
 		{
 			perror("get_next_line");
-			free_map_array(map_array, i);
-			close_and_handle_error(fd);
+			close_and_handle_error(data);
+			free_map_array(data->map_desc, i);
 			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
-	map_array[i] = NULL;
-	return (map_array);
+	data->map_desc[i] = NULL;
 }

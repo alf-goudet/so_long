@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:48:36 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/22 22:35:42 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/25 20:28:56 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,58 +29,63 @@
  *			6.2.2. [x] The lines between the first and the last must have a
  *				wall in their first and last characters.
  *		6.3. [x] Verify the existence of one 'P', one 'E' and at least one 'C'.
+ *      6.4. [ ] Verify if the map has a valid path to clear the game. In this
+ *				 path, all game clear objectives should be attainable:
+ *			6.4.1. [ ] Collect all collectibles.
+ *			6.4.2. [ ] Reach the exit.
  */
 
 static int	print_on_esc_key(int key, void *param)
 {
+	t_data	*data;
+
+	data = (t_data *)param;
 	if (key == ESC_KEY)
 	{
-		ft_printf("Exiting program...\n");
-		exit(EXIT_SUCCESS);
+		mlx_loop_end(data->mlx_ptr);
 	}
 	return (0);
 }
 
-static void	manage_game_window(void)
+static void	manage_game_window(t_data *data)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-
-	mlx_ptr = mlx_init();
-	if (mlx_ptr == NULL)
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
 	{
 		ft_putendl_fd("Error", STDERR_FILENO);
-		ft_putendl_fd("Connection to X-Server failed", STDERR_FILENO);
-		free_map_array(map_desc, line_count);
+		perror("mlx_init");
+		free_map_array(data->map_desc, data->num_rows);
 		exit(EXIT_FAILURE);
 	}
-	win_ptr = mlx_new_window(mlx_ptr, 1000, 1000, "Test Window");
-	mlx_string_put(mlx_ptr, win_ptr, 499, 499, 0xFFFFFF, "Test string");
-	img_ptr = mlx_new_image(mlx_ptr, 100, 100);	
-	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 200, 200);
-	mlx_key_hook(win_ptr, &print_on_esc_key, (void *)0);
-	mlx_loop(mlx_ptr);
-	mlx_destroy_window(mlx_ptr, win_ptr);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "Test Window");
+	if (data->win_ptr == NULL)
+	{
+		ft_putendl_fd("Error", STDERR_FILENO);
+		perror("mlx_new_window");
+		free(data->mlx_ptr);
+		free_map_array(data->map_desc, data->num_rows);
+		exit(EXIT_FAILURE);
+	}
+	mlx_key_hook(data->win_ptr, &print_on_esc_key, data);
+	mlx_loop(data->mlx_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	free(data->mlx_ptr);
 }
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	char	**map_desc;
-	char	*file_name;
-	size_t	line_count;
+	t_data	data;
 
 	if (argc != 2)
-		no_map_error(argv[0]);
-	file_name = argv[1];
-	validate_file_name(file_name);
-	line_count = count_lines(file_name);
-	fd = open_map_file(file_name);
-	map_desc = prep_map_array(fd, line_count);
-	close_and_handle_error(fd);
-	validate_map(map_desc, line_count);
-	free_map_array(map_desc, line_count);
-	manage_game_window();
+		exit(no_map_error(argv[0]));
+	data.file_name = argv[1];
+	validate_file_name(data.file_name);
+	count_rows(&data);
+	data.fd = open_map_file(data.file_name);
+	prep_map_array(&data);
+	close_and_handle_error(&data);
+	validate_map(&data);
+	free_map_array(data.map_desc, data.num_rows);
+	manage_game_window(&data);
 	return (0);
 }

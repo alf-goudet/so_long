@@ -6,13 +6,15 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 19:38:19 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/22 22:34:18 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/24 16:22:55 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "keys.h" // where ON_LINUX flag macro is defined according to OS
 
+// To use when allocating memory for X-Window images
+/*
 static void	destroy_all_images(t_data *data)
 {
 	size_t	i;
@@ -24,10 +26,11 @@ static void	destroy_all_images(t_data *data)
 		i++;
 	}
 }
+*/
 
 void	close_game(t_data *data)
 {
-	destroy_all_images(data);
+	// destroy_all_images(data);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (ON_LINUX)
 		mlx_destroy_display(data->mlx_ptr);

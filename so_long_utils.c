@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 17:46:05 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/07 16:52:32 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/25 14:56:35 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,15 @@ int	open_map_file(char *map_file_name)
 	return (fd);
 }
 
-size_t	count_lines(char *map_file_name)
+void	count_rows(t_data *data)
 {
-	size_t	line_count;
 	char	*temp_line;
-	int		temp_fd;
 
-	temp_fd = open_map_file(map_file_name);
-	line_count = 0;
+	data->fd = open_map_file(data->file_name);
+	data->num_rows = 0;
 	while (1)
 	{
-		temp_line = get_next_line(temp_fd);
+		temp_line = get_next_line(data->fd);
 		if (temp_line == NULL)
 		{
 			if (ft_strncmp(strerror(errno), "Success", 8) == 0)
@@ -47,11 +45,9 @@ size_t	count_lines(char *map_file_name)
 				exit(EXIT_FAILURE);
 			}
 		}
-		line_count++;
+		data->num_rows++;
 		free(temp_line);
 	}
-	close_and_handle_error(temp_fd);
-	return (line_count);
 }
 
 void	free_map_array(char **map_array, size_t alloc_count)
@@ -67,34 +63,35 @@ void	free_map_array(char **map_array, size_t alloc_count)
 	free(map_array);
 }
 
-void	close_and_handle_error(int fd)
+void	close_and_handle_error(t_data *data)
 {
 	int	close_checker;
 
-	close_checker = close(fd);
+	close_checker = close(data->fd);
 	if (close_checker == -1)
 	{
 		ft_putendl_fd("Error", STDERR_FILENO);
 		perror("close");
+		free_map_array(data->map_desc, data->num_rows);
 		exit(EXIT_FAILURE);
 	}
 }
 
 // NOTE: In the count_map_elements function:
-// - *elms[0]: Counter for player's staring position(s)
-// - *elms[1]: Counter for map's exit position(s)
-// - *elms[2]: Counter for collectibles
-void	count_map_elements(size_t *elms, char **map_desc, size_t num_rows)
+// - elms[0]: Counter for player's staring position(s)
+// - elms[1]: Counter for map's exit position(s)
+// - elms[2]: Counter for collectibles
+void	count_map_elements(size_t *elms, t_data *data)
 {
 	size_t	row_idx;
 	size_t	col_idx;
 	char	curr_chr;
 
 	row_idx = 0;
-	while (row_idx < num_rows)
+	while (row_idx < data->num_rows)
 	{
 		col_idx = 0;
-		curr_chr = map_desc[row_idx][col_idx];
+		curr_chr = data->map_desc[row_idx][col_idx];
 		while (curr_chr != '\n' && curr_chr != '\0')
 		{
 			if (curr_chr == 'P')
@@ -104,7 +101,7 @@ void	count_map_elements(size_t *elms, char **map_desc, size_t num_rows)
 			else if (curr_chr == 'C')
 				elms[2]++;
 			col_idx++;
-			curr_chr = map_desc[row_idx][col_idx];
+			curr_chr = data->map_desc[row_idx][col_idx];
 		}
 		row_idx++;
 	}
