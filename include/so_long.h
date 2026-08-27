@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/27 17:57:06 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/27 21:39:17 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h> // for exit()
 # include <stdbool.h> // for true/false boolean values
 # include "libft.h" // to use my libft and ft_printf()
+# include "mlx.h" // to use MiniLibX
 
 void	print_error_and_exit(char *msg);
 

@@ -26,15 +26,13 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 INC = include
 
-all: dir-obj $(NAME)
-
-dir-obj:
-	@if [ ! -d obj ]; then mkdir obj; fi
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rc $@ $(OBJS)
 
 obj/%.o: ./%.c
+	@mkdir -p obj
 	$(CC) $(CFLAGS) -c -I$(INC) $< -o $@
 
 clean:
