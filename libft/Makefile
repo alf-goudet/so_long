@@ -9,21 +9,33 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
        ft_uitoa.c ft_ltoa.c ft_ultoa.c ft_uintlen.c ft_ulonglen.c \
        ft_printf.c ft_printf_convs.c ft_printf_convs_long.c ft_printf_utils.c \
        ft_printf_utils_long.c get_next_line.c \
-       \
        
-OBJS = $(SRCS:.c=.o)
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+OBJS = obj/ft_isalpha.o obj/ft_isdigit.o obj/ft_isalnum.o obj/ft_isascii.o obj/ft_isprint.o \
+       obj/ft_strlen.o obj/ft_memset.o obj/ft_bzero.o obj/ft_memcpy.o obj/ft_memmove.o \
+       obj/ft_strlcpy.o obj/ft_strlcat.o obj/ft_toupper.o obj/ft_tolower.o obj/ft_strchr.o \
+       obj/ft_strrchr.o obj/ft_strncmp.o obj/ft_memchr.o obj/ft_memcmp.o obj/ft_strnstr.o \
+       obj/ft_atoi.o obj/ft_calloc.o obj/ft_strdup.o obj/ft_substr.o obj/ft_strjoin.o \
+       obj/ft_strtrim.o obj/ft_split.o obj/ft_itoa.o obj/ft_strmapi.o obj/ft_striteri.o \
+       obj/ft_putchar_fd.o obj/ft_putstr_fd.o obj/ft_putendl_fd.o obj/ft_putnbr_fd.o  \
+       obj/ft_uitoa.o obj/ft_ltoa.o obj/ft_ultoa.o obj/ft_uintlen.o obj/ft_ulonglen.o \
+       obj/ft_printf.o obj/ft_printf_convs.o obj/ft_printf_convs_long.o obj/ft_printf_utils.o \
+       obj/ft_printf_utils_long.o obj/get_next_line.o \
 
-all: $(NAME)
+CC = cc
+CFLAGS = -g -Wall -Wextra -Werror
+
+INC = include
+
+all: dir-obj $(NAME)
+
+dir-obj:
+	@if [ ! -d obj ]; then mkdir obj; fi
 
 $(NAME): $(OBJS)
 	ar rc $@ $(OBJS)
 
+obj/%.o: ./%.c
+	$(CC) $(CFLAGS) -c -I$(INC) $< -o $@
+
 clean:
-	rm -f $(OBJS)
-
-fclean:
-	rm -f $(NAME)
-
-re: fclean all
+	rm -rf obj $(NAME)
