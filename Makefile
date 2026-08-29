@@ -8,8 +8,8 @@ MLX = mlx
 
 INC = include
 
-SRCS = src/print_error.c src/main.c 
-OBJS = obj/print_error.o obj/main.o
+SRCS = src/error_exit.c src/main.c 
+OBJS = obj/error_exit.o obj/main.o
 
 
 
