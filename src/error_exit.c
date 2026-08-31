@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:19:50 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/28 21:53:04 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/31 18:27:17 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static void	free_map(t_map *map)
 void	error_exit(char *msg, t_game *game)
 {
 	ft_putendl_fd("Error", STDERR_FILENO);
-	ft_putendl_fd(msg, STDERR_FILENO);
+	if (!errno)
+		ft_putendl_fd(msg, STDERR_FILENO);
+	else
+		perror(msg);
 	if (game->img_ptrs)
 		destroy_images(game);
 	if (game->win_ptr)
