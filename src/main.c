@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:22:35 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/29 14:33:31 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/31 18:45:55 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 		error_exit("Missing map argument (.ber)", &game);
 	if (!file_ext_is_ber(argv[1]))
 		error_exit("Map argument doesn't end in .ber", &game);
+	read_map(argv[1], &game);
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
 		error_exit("mlx_init failed", &game);

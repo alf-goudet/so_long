@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/29 14:31:44 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/31 18:51:46 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 # define SO_LONG_H
 
 # include <stdlib.h> // for exit()
+# include <fcntl.h> // for open()
+# include <stdio.h> // for perror()
+# include <string.h> // for strerror()
+# include <unistd.h> // for read() (in get_next_line) and close()
+# include <errno.h> // to use variable errno (in strerror())
 # include "libft.h" // to use my libft and ft_printf()
 # include "mlx.h" // to use MiniLibX
 
 typedef struct s_map
 {
-	char		**grid;
-	size_t		width;
-	size_t		height;
-	size_t		collects;
-	size_t		exit;
-	size_t		player_pos;
-}				t_map;
+	char	**grid;
+	size_t	width;
+	size_t	height;
+	size_t	collects;
+	size_t	exit;
+	size_t	player_pos;
+}			t_map;
 
 typedef struct s_game
 {
@@ -37,5 +42,6 @@ typedef struct s_game
 }			t_game;
 
 void	error_exit(char *msg, t_game *game);
+void	read_map(char *file, t_game *game);
 
 #endif
