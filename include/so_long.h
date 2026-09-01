@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/31 18:51:46 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/01 21:04:47 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ typedef struct s_game
 
 void	error_exit(char *msg, t_game *game);
 void	read_map(char *file, t_game *game);
+void	check_rectangular(t_game *game);
+void	check_walls(t_game *game);
 
 #endif

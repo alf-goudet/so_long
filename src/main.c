@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:22:35 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/31 18:45:55 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/08/31 21:51:06 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,15 @@ static bool	file_ext_is_ber(char *file_name)
 	char	*file_ext;
 
 	file_ext = ft_strrchr(file_name, '.');
-	if (ft_strncmp(file_ext, ".ber", 5) == 0)
+	if (!file_ext)
 		return (true);
 	else
-		return (false);
+	{
+		if (ft_strncmp(file_ext, ".ber", 5) == 0)
+			return (true);
+		else
+			return (false);
+	}
 }
 
 int	main(int argc, char **argv)

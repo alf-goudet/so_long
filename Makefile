@@ -8,8 +8,8 @@ MLX = mlx
 
 INC = include
 
-SRCS = src/error_exit.c src/read_map.c src/main.c 
-OBJS = obj/error_exit.o obj/read_map.o obj/main.o
+SRCS = src/error_exit.c src/validate_map.c src/read_map.c src/main.c 
+OBJS = obj/error_exit.o obj/validate_map.o obj/read_map.o obj/main.o
 
 
 
