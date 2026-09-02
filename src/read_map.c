@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/29 17:59:27 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/01 21:06:55 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/02 14:13:56 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	read_map(char *file, t_game *game)
 	close_and_handle_error(fd[0], game);
 	check_rectangular(game);
 	check_walls(game);
+	check_chars(game);
 	i = 0;
 	while (i < game->map.height)
 	{	
