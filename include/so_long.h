@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/01 21:04:47 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/02 14:13:29 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_map
 	size_t	collects;
 	size_t	exit;
 	size_t	player_pos;
+	size_t	player_start_x;
+	size_t	player_start_y;
 }			t_map;
 
 typedef struct s_game
@@ -45,5 +47,6 @@ void	error_exit(char *msg, t_game *game);
 void	read_map(char *file, t_game *game);
 void	check_rectangular(t_game *game);
 void	check_walls(t_game *game);
+void	check_chars(t_game *game);
 
 #endif
