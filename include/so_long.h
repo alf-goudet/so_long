@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/02 14:13:29 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/03 18:19:59 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,9 @@ void	read_map(char *file, t_game *game);
 void	check_rectangular(t_game *game);
 void	check_walls(t_game *game);
 void	check_chars(t_game *game);
+void	check_paths(t_game *game);
+char	**copy_and_fill_grid(t_game *game);
+void	free_map(char **grid, size_t row_allocs);
+void	flood_fill(char **map, size_t x, size_t y);
 
 #endif

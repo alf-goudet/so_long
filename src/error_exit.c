@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:19:50 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/01 21:37:23 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/02 18:18:06 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ static void	destroy_images(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->img_ptrs[i]);
 		i++;
 	}
-}
-
-static void	free_map(t_map *map)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < map->height)
-	{
-		free(map->grid[i]);
-		i++;
-	}
-	free(map->grid);
 }
 
 void	error_exit(char *msg, t_game *game)
@@ -53,6 +40,6 @@ void	error_exit(char *msg, t_game *game)
 	if (game->mlx_ptr)
 		free(game->mlx_ptr);
 	if (game->map.grid)
-		free_map(&(game->map));
+		free_map(game->map.grid, game->map.height);
 	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 20:22:13 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/02 13:51:59 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/03 18:19:59 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,34 @@ static void	count_game_elements(t_game *game, size_t row_idx, size_t col_idx)
 		game->map.exit++;
 	else if (game->map.grid[row_idx][col_idx] == 'C')
 		game->map.collects++;
-	if (game->map.player_pos > 1 || game->map.exit > 1)
-		error_exit("More than 1 player start/exit found", game);
+	if (game->map.player_pos > 1)
+		error_exit("More than 1 player start (P) in map", game);
+	else if (game->map.exit > 1)
+		error_exit("More than 1 exit (E) in map", game);
+}
+
+void	check_paths(t_game *game)
+{
+	size_t	row_idx;
+	size_t	col_idx;
+	char	**grid_copy;
+
+	grid_copy = copy_and_fill_grid(game);
+	row_idx = 1;
+	while (row_idx < game->map.height - 1)
+	{
+		col_idx = 1;
+		while (col_idx < game->map.width - 1)
+		{
+			if (grid_copy[row_idx][col_idx] == 'C'
+				|| grid_copy[row_idx][col_idx] == 'E')
+			{
+				free_map(grid_copy, game->map.height);
+				error_exit("Map has no valid path for game completion", game);
+			}
+			col_idx++;
+		}
+		row_idx++;
+	}
+	free_map(grid_copy, game->map.height);
 }

@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:20:41 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/25 21:14:22 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/03 17:15:46 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,18 +118,4 @@ static void	get_line_and_leftovers(char const *buf, char **line, char **lftov)
 		return ;
 	}
 	*lftov = ft_substr(buf, line_len, lftov_len);
-}
-
-// No space for this helper function in utils
-char	*ft_strdup(const char *s)
-{
-	char		*s_dup;
-	size_t		len;
-
-	len = ft_strlen(s);
-	s_dup = (char *)malloc(len + 1);
-	if (s_dup == NULL)
-		return (NULL);
-	ft_memcpy(s_dup, s, len + 1);
-	return (s_dup);
 }

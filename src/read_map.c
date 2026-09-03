@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/29 17:59:27 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/02 14:13:56 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/03 17:13:51 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	calc_map_height(int temp_fd, t_game *game)
 
 static void	fill_grid(t_game *game, int fd)
 {
-	char			*newl;
-	size_t			i;
+	char	*newl;
+	size_t	i;
 
 	i = 0;
 	game->map.grid = (char **)ft_calloc(game->map.height, sizeof(char *));
@@ -75,6 +75,7 @@ void	read_map(char *file, t_game *game)
 	check_rectangular(game);
 	check_walls(game);
 	check_chars(game);
+	check_paths(game);
 	i = 0;
 	while (i < game->map.height)
 	{	
