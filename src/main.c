@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:22:35 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/08/31 21:51:06 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/07 17:43:09 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,23 @@ static bool	file_ext_is_ber(char *file_name)
 	}
 }
 
+static void	run_graphics(t_game *game)
+{
+	int	width;
+	int	height;
+
+	width = game->map.width * TILE_SIZE;
+	height = game->map.height * TILE_SIZE;
+	game->mlx_ptr = mlx_init();
+	if (!game->mlx_ptr)
+		error_exit("mlx_init failed", game);
+	game->win_ptr = mlx_new_window(game->mlx_ptr, width, height, "so_long");
+	if (!game->win_ptr)
+		error_exit("Window creation failed", game);
+	load_images(game);
+	render_map(game);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -48,12 +65,7 @@ int	main(int argc, char **argv)
 	if (!file_ext_is_ber(argv[1]))
 		error_exit("Map argument doesn't end in .ber", &game);
 	read_map(argv[1], &game);
-	game.mlx_ptr = mlx_init();
-	if (!game.mlx_ptr)
-		error_exit("mlx_init failed", &game);
-	game.win_ptr = mlx_new_window(game.mlx_ptr, 800, 600, "so_long");
-	if (!game.win_ptr)
-		error_exit("Window creation failed", &game);
+	run_graphics(&game);
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }

@@ -6,12 +6,14 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/03 18:19:59 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/07 19:15:12 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define TILE_SIZE 64
 
 # include <stdlib.h> // for exit()
 # include <fcntl.h> // for open()
@@ -41,6 +43,11 @@ typedef struct s_game
 	t_map	map;
 	size_t	move_count;
 	void	**img_ptrs;
+	void	*img_wall;
+	void	*img_floor;
+	void	*img_player;
+	void	*img_collect;
+	void	*img_exit;
 }			t_game;
 
 void	error_exit(char *msg, t_game *game);
@@ -52,5 +59,7 @@ void	check_paths(t_game *game);
 char	**copy_and_fill_grid(t_game *game);
 void	free_map(char **grid, size_t row_allocs);
 void	flood_fill(char **map, size_t x, size_t y);
+void	load_images(t_game *game);
+void	render_map(t_game *game);
 
 #endif
