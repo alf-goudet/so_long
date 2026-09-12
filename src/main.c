@@ -6,12 +6,11 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:22:35 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/12 13:23:39 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/12 19:20:49 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdbool.h> // for explicit true/false boolean values
 
 static void	init_game(t_game *game)
 {
@@ -67,6 +66,7 @@ int	main(int argc, char **argv)
 	read_map(argv[1], &game);
 	run_graphics(&game);
 	mlx_hook(game.win_ptr, DESTROY_NOTIFY, NO_EVENT_MASK, &close_game, &game);
+	mlx_key_hook(game.win_ptr, &key_press, &game);
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }

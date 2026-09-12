@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/12 11:05:39 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/12 12:52:37 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/12 18:35:30 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	close_game(void *param)
 	mlx_destroy_image(game->mlx_ptr, game->img_exit);
 	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	mlx_destroy_display(game->mlx_ptr);
+	if (ON_LINUX)
+		mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
 	free_map(game->map.grid, game->map.height);
 	exit(EXIT_SUCCESS);
