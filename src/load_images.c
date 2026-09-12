@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 20:27:49 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/07 20:35:00 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:55:46 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	*load_image(t_game *game, char *file, int width, int height)
 
 void	load_images(t_game *game)
 {
-	game->img_wall = load_image(game, "assets/wall.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_floor = load_image(game, "assets/grass.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_player = load_image(game, "assets/character.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_collect = load_image(game, "assets/coin.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_exit = load_image(game, "assets/chest.xpm", TILE_SIZE, TILE_SIZE);
+	game->img_wall = load_image(game, "textures/wall.xpm", TILE_SIZE, TILE_SIZE);
+	game->img_floor = load_image(game, "textures/grass.xpm", TILE_SIZE, TILE_SIZE);
+	game->img_player = load_image(game, "textures/character.xpm", TILE_SIZE, TILE_SIZE);
+	game->img_collect = load_image(game, "textures/coin.xpm", TILE_SIZE, TILE_SIZE);
+	game->img_exit = load_image(game, "textures/chest.xpm", TILE_SIZE, TILE_SIZE);
 }

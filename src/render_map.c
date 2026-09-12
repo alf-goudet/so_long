@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 20:29:16 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/08 18:02:18 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/12 13:07:38 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	render_element(t_game *game, int x, int y)
 		mlx_put_image_to_window(mlx, win, game->img_exit, pix_x, pix_y);
 }
 
-static int	end_loop(int keycode, void *param)
+/*static int	end_loop(int keycode, void *param)
 {
 	void	*mlx_ptr;
 
@@ -60,7 +60,7 @@ static int	end_loop(int keycode, void *param)
 	if (keycode == 0x20)
 		mlx_loop_end(mlx_ptr);
 	return (0);
-}
+}*/
 
 void	render_map(t_game *game)
 {
@@ -82,10 +82,10 @@ void	render_map(t_game *game)
 			x++;
 		}
 		y++;
-		if (y == game->map.height)
+		if (y == game->map.height && !floor_fully_rendered)
 		{
-			mlx_key_hook(game->win_ptr, &end_loop, game->mlx_ptr);
-			mlx_loop(game->mlx_ptr);
+			//mlx_key_hook(game->win_ptr, &end_loop, game->mlx_ptr);
+			//mlx_loop(game->mlx_ptr);
 			floor_fully_rendered = 1;
 			y = 0;
 		}

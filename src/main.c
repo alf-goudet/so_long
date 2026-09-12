@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:22:35 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/07 17:43:09 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/12 13:23:39 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int argc, char **argv)
 		error_exit("Map argument doesn't end in .ber", &game);
 	read_map(argv[1], &game);
 	run_graphics(&game);
+	mlx_hook(game.win_ptr, DESTROY_NOTIFY, NO_EVENT_MASK, &close_game, &game);
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }
