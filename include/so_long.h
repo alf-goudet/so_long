@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/12 20:35:10 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/14 18:21:30 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 // 2.1. Linux keycodes
 # ifdef __linux__
-#  define ON_LINUX true		// To run mlx_destroy_notify (on Linux only)
+#  define ON_LINUX true	// To run mlx_destroy_display (on Linux only)
 #  define ESC 65307
 #  define W 119
 #  define A 97
@@ -39,7 +39,7 @@
 
 // 2.2. macOS keycodes
 # elif __APPLE__
-#  define ON_LINUX false	// To skip mlx_destroy_display on macOS (segfault)
+#  define ON_LINUX false // To skip mlx_destroy_display (inexistent in macOS)
 #  define ESC 53
 #  define W 13
 #  define A 0
@@ -74,8 +74,8 @@ typedef struct s_map
 	size_t	collects;
 	size_t	exit;
 	size_t	player_pos;
-	size_t	player_start_x;
-	size_t	player_start_y;
+	size_t	player_pos_x;
+	size_t	player_pos_y;
 }			t_map;
 
 typedef struct s_game
@@ -84,7 +84,6 @@ typedef struct s_game
 	void	*win_ptr;
 	t_map	map;
 	size_t	move_count;
-	void	**img_ptrs;
 	void	*img_wall;
 	void	*img_floor;
 	void	*img_player;
@@ -109,6 +108,6 @@ void	load_images(t_game *game);
 void	render_map(t_game *game);
 int		close_game(void *param);
 int		key_press(int keycode, void *param);
-void	move_player(t_game *g, int keycode, int dx, int dy);
+void	move_player(t_game *g, int dx, int dy);
 
 #endif

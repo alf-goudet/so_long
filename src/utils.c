@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 17:33:14 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/03 19:02:19 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/14 16:14:28 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ char	**copy_and_fill_grid(t_game *game)
 	if (grid_copy == NULL)
 		error_exit("malloc", game);
 	copy_grid(game, grid_copy);
-	player_start_x = game->map.player_start_x;
-	player_start_y = game->map.player_start_y;
+	player_start_x = game->map.player_pos_x;
+	player_start_y = game->map.player_pos_y;
 	flood_fill(grid_copy, player_start_x, player_start_y);
 	return (grid_copy);
 }

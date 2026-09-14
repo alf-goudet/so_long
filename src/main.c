@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:22:35 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/12 19:20:49 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/14 17:27:01 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ static void	init_game(t_game *game)
 	game->win_ptr = NULL;
 	ft_bzero(&game->map, sizeof(t_map));
 	game->move_count = 0;
-	game->img_ptrs = NULL;
+	game->img_wall = NULL;
+	game->img_floor = NULL;
+	game->img_player = NULL;
+	game->img_collect = NULL;
+	game->img_exit = NULL;
 }
 
 static bool	file_ext_is_ber(char *file_name)
