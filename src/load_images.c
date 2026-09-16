@@ -6,14 +6,14 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 20:27:49 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/11 17:55:46 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/15 17:31:09 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static void	*load_image(t_game *game, char *file, int width, int height)
-{	
+{
 	void	*mlx_ptr;
 	void	*img_ptr;
 
@@ -26,9 +26,12 @@ static void	*load_image(t_game *game, char *file, int width, int height)
 
 void	load_images(t_game *game)
 {
-	game->img_wall = load_image(game, "textures/wall.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_floor = load_image(game, "textures/grass.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_player = load_image(game, "textures/character.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_collect = load_image(game, "textures/coin.xpm", TILE_SIZE, TILE_SIZE);
-	game->img_exit = load_image(game, "textures/chest.xpm", TILE_SIZE, TILE_SIZE);
+	const int	wid = TILE_SIZE;
+	const int	hei = TILE_SIZE;
+
+	game->img_wall = load_image(game, "textures/wall.xpm", wid, hei);
+	game->img_floor = load_image(game, "textures/grass.xpm", wid, hei);
+	game->img_player = load_image(game, "textures/character.xpm", wid, hei);
+	game->img_collect = load_image(game, "textures/coin.xpm", wid, hei);
+	game->img_exit = load_image(game, "textures/chest.xpm", wid, hei);
 }

@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 18:32:01 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/03 17:00:09 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/15 17:23:39 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	flood_fill(char **map, size_t x, size_t y)
 		return ;
 	map[y][x] = 'V';
 	flood_fill(map, x, y + 1);
-	flood_fill(map, x + 1, y);			
+	flood_fill(map, x + 1, y);
 	flood_fill(map, x, y - 1);
-	flood_fill(map, x - 1, y);			
+	flood_fill(map, x - 1, y);
 }

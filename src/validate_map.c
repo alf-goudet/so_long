@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 20:22:13 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/14 16:14:28 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/15 17:33:37 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,13 @@ static void	count_game_elements(t_game *game, size_t row_idx, size_t col_idx)
 		game->map.player_pos++;
 		game->map.player_pos_x = col_idx;
 		game->map.player_pos_y = row_idx;
-	} 
+	}
 	else if (game->map.grid[row_idx][col_idx] == 'E')
+	{
 		game->map.exit++;
+		game->map.exit_pos_x = col_idx;
+		game->map.exit_pos_y = row_idx;
+	}
 	else if (game->map.grid[row_idx][col_idx] == 'C')
 		game->map.collects++;
 	if (game->map.player_pos > 1)

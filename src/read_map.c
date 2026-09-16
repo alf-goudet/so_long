@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/29 17:59:27 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/03 17:13:51 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/15 17:38:48 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void	fill_grid(t_game *game, int fd)
 void	read_map(char *file, t_game *game)
 {
 	int		fd[2];
-	size_t	i;
 
 	fd[0] = open(file, O_RDWR);
 	if (fd[0] == -1)
@@ -76,12 +75,6 @@ void	read_map(char *file, t_game *game)
 	check_walls(game);
 	check_chars(game);
 	check_paths(game);
-	i = 0;
-	while (i < game->map.height)
-	{	
-		ft_printf("%s\n", game->map.grid[i]);
-		i++;
-	}
 }
 
 static void	close_and_handle_error(int fd, t_game *game)

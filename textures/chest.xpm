@@ -1,7 +1,7 @@
 /* XPM */
 static char * chest_xpm[] = {
 "64 64 6 1",
-" 	c None",
+" 	c #C8D45D",
 ".	c #14182E",
 "+	c #FFEE83",
 "@	c #F5FFE8",

@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/14 18:21:30 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/15 15:11:35 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_map
 	size_t	height;
 	size_t	collects;
 	size_t	exit;
+	size_t	exit_pos_x;
+	size_t	exit_pos_y;
 	size_t	player_pos;
 	size_t	player_pos_x;
 	size_t	player_pos_y;
@@ -82,13 +84,14 @@ typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_map	map;
-	size_t	move_count;
 	void	*img_wall;
 	void	*img_floor;
 	void	*img_player;
 	void	*img_collect;
 	void	*img_exit;
+	t_map	map;
+	size_t	collected;
+	size_t	move_count;
 }			t_game;
 
 /* ************************************************************************** */
