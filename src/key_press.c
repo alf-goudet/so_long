@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/12 17:35:45 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/14 20:56:16 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/17 20:44:40 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ int	key_press(int keycode, void *param)
 	game = (t_game *)param;
 	dx = 0;
 	dy = 0;
+	ft_printf("Pressed key of code: %d\n", keycode);
 	if (keycode == ESC)
 		close_game(game);
-	else if (keycode == W)
+	else if (keycode == W || keycode == UP_ARROW)
 		move_player(game, dx, --dy);
-	else if (keycode == A)
+	else if (keycode == A || keycode == LEFT_ARROW)
 		move_player(game, --dx, dy);
-	else if (keycode == S)
+	else if (keycode == S || keycode == DOWN_ARROW)
 		move_player(game, dx, ++dy);
-	else if (keycode == D)
+	else if (keycode == D || keycode == RIGHT_ARROW)
 		move_player(game, ++dx, dy);
 	return (0);
 }
