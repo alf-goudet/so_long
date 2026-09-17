@@ -6,7 +6,7 @@
 /*   By: agoudet- <agoudet-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:37:52 by agoudet-          #+#    #+#             */
-/*   Updated: 2026/09/15 15:11:35 by agoudet-         ###   ########.fr       */
+/*   Updated: 2026/09/17 20:42:51 by agoudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 // 1. Event and mask values for mlx_hook(), as in /usr/include/X11/X.h
 
-# define DESTROY_NOTIFY 17 		// Value of DestroyNotify event macro
-# define NO_EVENT_MASK 0L		// Value of NoEventMask macro
+# define DESTROY_NOTIFY 17 // Value of DestroyNotify event macro
+# define NO_EVENT_MASK 0L // Value of NoEventMask macro
 
 // 2. Keycode definitions for this project (depending on running OS)
 
@@ -36,6 +36,10 @@
 #  define A 97
 #  define S 115
 #  define D 100
+#  define UP_ARROW 65362
+#  define DOWN_ARROW 65364
+#  define LEFT_ARROW 65361
+#  define RIGHT_ARROW 65363
 
 // 2.2. macOS keycodes
 # elif __APPLE__
@@ -45,6 +49,12 @@
 #  define A 0
 #  define S 1
 #  define D 2
+/* Still figuring out these... 
+#  define UP
+#  define DOWN
+#  define LEFT
+#  define RIGHT
+*/
 # endif
 
 /* ************************************************************************** */
